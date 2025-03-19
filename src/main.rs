@@ -2,14 +2,13 @@ mod app;
 mod ui;
 mod converter;
 
-use std::{error::Error, io, time::Duration, };
+use std::{error::Error, io};
 use ratatui::{backend::CrosstermBackend, Terminal};
 use crossterm::{
-    event::{self, DisableMouseCapture, EnableMouseCapture, Event},
+    event::{self, DisableMouseCapture, EnableMouseCapture, KeyEventKind, Event},
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
     execute
 };
-
 use app::App;
 use ui::draw_ui;
 use converter::convert_image;
@@ -18,11 +17,8 @@ fn run_app<B: ratatui::backend::Backend>(terminal: &mut Terminal<B>, mut app: Ap
     loop {
         terminal.draw(|f| draw_ui(f, &app))?;
 
-        if !event::poll(Duration::from_millis(200))? {
-            continue;
-        }
-
         if let Event::Key(key) = event::read()? {
+            if key.kind != KeyEventKind::Press { continue; }
             if app.handle_key_event(key, convert_image) {
                 break;
             }

@@ -1,5 +1,5 @@
 use std::{error::Error, path::{Path, PathBuf}};
-use image::{DynamicImage, ImageOutputFormat};
+use image::{DynamicImage, ImageFormat};
 use std::io::BufWriter;
 
 pub fn convert_image(input: &str, output_folder: &str, format: &str) -> Result<(), Box<dyn Error>> {
@@ -18,10 +18,10 @@ pub fn convert_image(input: &str, output_folder: &str, format: &str) -> Result<(
     let mut writer = BufWriter::new(file);
 
     let output_format = match format {
-        "jpeg" | "jpg" => ImageOutputFormat::Jpeg(80),
-        "webp" => ImageOutputFormat::WebP,
-        "gif" => ImageOutputFormat::Gif,
-        _ => ImageOutputFormat::Png,
+        "jpeg" | "jpg" => ImageFormat::Jpeg,
+        "webp" => ImageFormat::WebP,
+        "gif" => ImageFormat::Gif,
+        _ => ImageFormat::Png,
     };
 
     img.write_to(&mut writer, output_format)?;

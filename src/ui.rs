@@ -1,6 +1,5 @@
 use std::path::Path;
 use ratatui::{
-    backend::Backend,
     layout::{Constraint, Direction, Layout},
     style::{Color, Style},
     widgets::{Block, Borders, List, ListItem, Paragraph},
@@ -9,7 +8,7 @@ use ratatui::{
 
 use crate::app::{App, InputMode};
 
-pub fn draw_ui<B: Backend>(f: &mut Frame<B>, app: &App) {
+pub fn draw_ui(f: &mut Frame, app: &App) {
     let chunks = Layout::default()
         .direction(Direction::Vertical)
         .margin(1)
@@ -19,7 +18,7 @@ pub fn draw_ui<B: Backend>(f: &mut Frame<B>, app: &App) {
             Constraint::Length(3),
             Constraint::Length(3),
         ])
-        .split(f.size());
+        .split(f.area());
 
     let header = Paragraph::new("Image Converter TUI (Press 'q' to quit)")
         .style(Style::default().fg(Color::Yellow))
@@ -53,7 +52,7 @@ pub fn draw_ui<B: Backend>(f: &mut Frame<B>, app: &App) {
         InputMode::AddingImage => ("Enter image file path(s): ", Style::default().fg(Color::Green)),
         InputMode::SettingOutput => ("Enter output folder: ", Style::default().fg(Color::Green)),
     };
-    let input = Paragraph::new(app.input_buffer.as_ref())
+    let input = Paragraph::new(app.input_buffer.as_str())
         .style(style)
         .block(Block::default().borders(Borders::ALL).title(prompt));
     f.render_widget(input, chunks[3]);
