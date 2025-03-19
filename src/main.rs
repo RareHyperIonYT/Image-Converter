@@ -3,11 +3,11 @@ mod ui;
 mod converter;
 
 use std::{error::Error, io, time::Duration, };
-use ratatui::{backend::CrosstermBackend, Terminal, };
+use ratatui::{backend::CrosstermBackend, Terminal};
 use crossterm::{
     event::{self, DisableMouseCapture, EnableMouseCapture, Event},
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
-    execute,
+    execute
 };
 
 use app::App;
@@ -35,9 +35,9 @@ fn main() -> Result<(), Box<dyn Error>> {
     enable_raw_mode()?;
     let mut stdout = io::stdout();
     execute!(stdout, EnterAlternateScreen, EnableMouseCapture)?;
+
     let backend = CrosstermBackend::new(stdout);
     let mut terminal = Terminal::new(backend)?;
-
     let app = App::default();
     let res = run_app(&mut terminal, app);
 

@@ -71,12 +71,15 @@ impl App {
                             InputMode::AddingImage => {
                                 self.images.extend(Self::parse_image_paths(&self.input_buffer));
                             }
+
                             InputMode::SettingOutput => {
                                 self.output_folder = self.input_buffer.trim().to_string();
                             }
+
                             _ => {}
                         }
                     }
+
                     self.input_mode = InputMode::Normal;
                     self.input_buffer.clear();
                 }
