@@ -34,20 +34,24 @@ impl App {
         match self.input_mode {
             InputMode::Normal => match key.code {
                 KeyCode::Char('q') => return true,
+
                 KeyCode::Char('a') => {
                     self.images.clear();
                     self.input_mode = InputMode::AddingImage;
                     self.input_buffer.clear();
                 }
+
                 KeyCode::Char('o') => {
                     self.input_mode = InputMode::SettingOutput;
                     self.input_buffer.clear();
                 }
+
                 KeyCode::Char('f') | KeyCode::Char('F') => {
                     if let Some(idx) = self.formats.iter().position(|&f| f == self.selected_format) {
                         self.selected_format = self.formats[(idx + 1) % self.formats.len()].to_string();
                     }
                 }
+
                 KeyCode::Char('c') => {
                     for path in &mut self.images {
                         let original = path.clone();
@@ -57,6 +61,7 @@ impl App {
                         }
                     }
                 }
+
                 _ => {}
             },
             InputMode::AddingImage | InputMode::SettingOutput => match key.code {
@@ -75,17 +80,22 @@ impl App {
                     self.input_mode = InputMode::Normal;
                     self.input_buffer.clear();
                 }
+
                 KeyCode::Char(c) => self.input_buffer.push(c),
+
                 KeyCode::Backspace => {
                     self.input_buffer.pop();
                 }
+
                 KeyCode::Esc => {
                     self.input_mode = InputMode::Normal;
                     self.input_buffer.clear();
                 }
+
                 _ => {}
             },
         }
+
         false
     }
 

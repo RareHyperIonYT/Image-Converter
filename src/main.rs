@@ -14,10 +14,7 @@ use app::App;
 use ui::draw_ui;
 use converter::convert_image;
 
-fn run_app<B: ratatui::backend::Backend>(
-    terminal: &mut Terminal<B>,
-    mut app: App,
-) -> Result<(), Box<dyn Error>> {
+fn run_app<B: ratatui::backend::Backend>(terminal: &mut Terminal<B>, mut app: App) -> Result<(), Box<dyn Error>> {
     loop {
         terminal.draw(|f| draw_ui(f, &app))?;
 
