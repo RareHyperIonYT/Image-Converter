@@ -23,8 +23,8 @@ To build and run the **Image Converter** TUI, you need:
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/image-converter-tui.git
-cd image-converter-tui
+git clone https://github.com/RareHyperIonYT/Image-Converter.git
+cd image-converter
 ```
 
 Build the application:
