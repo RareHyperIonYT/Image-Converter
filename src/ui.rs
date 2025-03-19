@@ -27,11 +27,10 @@ pub fn draw_ui<B: Backend>(f: &mut Frame<B>, app: &App) {
     f.render_widget(header, chunks[0]);
 
     let items: Vec<ListItem> = app.images.iter().map(|i| {
-        let file_stem = Path::new(i)
-            .file_stem()
-            .unwrap_or_default()
-            .to_string_lossy();
-        ListItem::new(format!("{} -> {}.{}", i, file_stem, app.selected_format))
+        let path = Path::new(i);
+        let file_stem = path.file_stem().unwrap().to_str().unwrap();
+        let file_extension = path.extension().unwrap().to_str().unwrap();
+        ListItem::new(format!("{}.{} -> {}.{}", file_stem, file_extension, file_stem, app.selected_format))
     }).collect();
 
     let images_list = List::new(items)
