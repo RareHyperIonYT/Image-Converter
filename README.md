@@ -48,7 +48,7 @@ Once you run the application, you will be presented with a TUI that displays the
 
 | Key | Action                                 |
 |-----|----------------------------------------|
-| `a` | Add images to the list of conversions. |
+| `A` | Add images to the list of conversions. |
 | `C` | Cycles between output formats.         |
 | `O` | Set output directory of images.        |
 | `Q` | Quit the application.                  |
