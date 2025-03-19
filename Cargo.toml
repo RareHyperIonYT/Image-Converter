@@ -7,3 +7,6 @@ edition = "2024"
 ratatui = "0.20"
 crossterm = "0.24"
 image = "0.24"
+
+[build-dependencies]
+winres = "0.1.12"
