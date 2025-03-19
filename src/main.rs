@@ -3,7 +3,7 @@ mod ui;
 mod converter;
 
 use std::{error::Error, io};
-use ratatui::{backend::CrosstermBackend, Terminal};
+use ratatui::{backend::{CrosstermBackend, Backend}, Terminal};
 use crossterm::{
     event::{self, DisableMouseCapture, EnableMouseCapture, KeyEventKind, Event},
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
@@ -13,7 +13,7 @@ use app::App;
 use ui::draw_ui;
 use converter::convert_image;
 
-fn run_app<B: ratatui::backend::Backend>(terminal: &mut Terminal<B>, mut app: App) -> Result<(), Box<dyn Error>> {
+fn run_app<B: Backend>(terminal: &mut Terminal<B>, mut app: App) -> Result<(), Box<dyn Error>> {
     loop {
         terminal.draw(|f| draw_ui(f, &app))?;
 

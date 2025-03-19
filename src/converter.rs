@@ -1,6 +1,5 @@
-use std::{error::Error, path::{Path, PathBuf}};
+use std::{error::Error, path::{Path, PathBuf}, io::BufWriter};
 use image::{DynamicImage, ImageFormat};
-use std::io::BufWriter;
 
 pub fn convert_image(input: &str, output_folder: &str, format: &str) -> Result<(), Box<dyn Error>> {
     let img: DynamicImage = image::open(input)?;
