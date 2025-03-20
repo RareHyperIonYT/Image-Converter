@@ -22,19 +22,19 @@ To build and run the **Image Converter** TUI, you need:
 
 Clone the repository:
 
-```bash
+```shell
 git clone https://github.com/RareHyperIonYT/Image-Converter.git
 cd image-converter
 ```
 
 Build the application:
 
-```bash
+```shell
 cargo build --release
 ```
 
 The compiled binary will be available at:
-```
+```shell
 target/release/image-converter
 ```
 
