@@ -1,5 +1,5 @@
-use std::{error::Error};
 use crossterm::event::{KeyCode, KeyEvent};
+use std::error::Error;
 
 pub enum InputMode {
     Normal,
